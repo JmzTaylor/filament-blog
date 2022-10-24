@@ -3,7 +3,6 @@
 namespace Stephenjude\FilamentBlog\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -74,12 +73,6 @@ class PostResource extends Resource
 
                         self::getContentEditor('content'),
 
-                        Forms\Components\BelongsToSelect::make('blog_author_id')
-                            ->label(__('filament-blog::filament-blog.author'))
-                            ->relationship('author', 'name')
-                            ->searchable()
-                            ->required(),
-
                         Forms\Components\BelongsToSelect::make('blog_category_id')
                             ->label(__('filament-blog::filament-blog.category'))
                             ->relationship('category', 'name')
@@ -88,9 +81,6 @@ class PostResource extends Resource
 
                         Forms\Components\DatePicker::make('published_at')
                             ->label(__('filament-blog::filament-blog.published_date')),
-                        SpatieTagsInput::make('tags')
-                            ->label(__('filament-blog::filament-blog.tags'))
-                            ->required(),
                     ])
                     ->columns([
                         'sm' => 2,
@@ -123,10 +113,6 @@ class PostResource extends Resource
                     ->rounded(),
                 Tables\Columns\TextColumn::make('title')
                     ->label(__('filament-blog::filament-blog.title'))
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('author.name')
-                    ->label(__('filament-blog::filament-blog.author_name'))
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('category.name')
@@ -182,16 +168,12 @@ class PostResource extends Resource
 
     public static function getGloballySearchableAttributes(): array
     {
-        return ['title', 'slug', 'author.name', 'category.name'];
+        return ['title', 'slug', 'category.name'];
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array
     {
         $details = [];
-
-        if ($record->author) {
-            $details['Author'] = $record->author->name;
-        }
 
         if ($record->category) {
             $details['Category'] = $record->category->name;

@@ -8,12 +8,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
-use Spatie\Tags\HasTags;
 
 class Post extends Model
 {
     use HasFactory;
-    use HasTags;
 
     /**
      * @var string
@@ -59,11 +57,6 @@ class Post extends Model
     public function scopeDraft(Builder $query)
     {
         return $query->whereNull('published_at');
-    }
-
-    public function author(): BelongsTo
-    {
-        return $this->belongsTo(Author::class, 'blog_author_id');
     }
 
     public function category(): BelongsTo

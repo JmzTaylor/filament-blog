@@ -42,7 +42,6 @@ class InstallCommand extends Command
 
         $this->comment('Publishing Filament Blog Migrations...');
         $this->callSilent('vendor:publish', ['--tag' => 'filament-blog-migrations']);
-        $this->callSilent('vendor:publish', ['--tag' => 'tags-migrations']);
 
         $this->info('Filament blog was installed successfully.');
 
