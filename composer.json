@@ -1,5 +1,5 @@
 {
-    "name": "stephenjude/filament-blog",
+    "name": "jmztaylor/filament-blog",
     "description": "Filament Blog Builder",
     "keywords": [
         "stephenjude",
@@ -7,7 +7,7 @@
         "filament-blog",
         "blog"
     ],
-    "homepage": "https://github.com/stephenjude/filament-blog",
+    "homepage": "https://github.com/jmztaylor/filament-blog",
     "license": "MIT",
     "authors": [
         {
