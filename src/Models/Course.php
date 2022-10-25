@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 
-class Post extends Model
+class Course extends Model
 {
     use HasFactory;
 
     /**
      * @var string
      */
-    protected $table = 'blog_posts';
+    protected $table = 'blog_courses';
 
     /**
      * @var array<int, string>

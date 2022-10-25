@@ -13,22 +13,22 @@ use Illuminate\Support\Str;
 
 use function now;
 
-use Stephenjude\FilamentBlog\Models\Post;
-use Stephenjude\FilamentBlog\Resources\PostResource\Pages;
+use Stephenjude\FilamentBlog\Models\Course;
+use Stephenjude\FilamentBlog\Resources\CourseResource\Pages;
 
 use Stephenjude\FilamentBlog\Traits\HasContentEditor;
 
-class PostResource extends Resource
+class CourseResource extends Resource
 {
     use HasContentEditor;
 
-    protected static ?string $model = Post::class;
+    protected static ?string $model = Course::class;
 
-    protected static ?string $slug = 'blog/posts';
+    protected static ?string $slug = 'blog/courses';
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    protected static ?string $navigationGroup = 'Blog';
+    protected static ?string $navigationGroup = 'Courses';
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
@@ -50,7 +50,7 @@ class PostResource extends Resource
                             ->label(__('filament-blog::filament-blog.slug'))
                             ->disabled()
                             ->required()
-                            ->unique(Post::class, 'slug', fn ($record) => $record),
+                            ->unique(Course::class, 'slug', fn ($record) => $record),
 
                         Forms\Components\Textarea::make('excerpt')
                             ->label(__('filament-blog::filament-blog.excerpt'))
@@ -91,12 +91,12 @@ class PostResource extends Resource
                         Forms\Components\Placeholder::make('created_at')
                             ->label(__('filament-blog::filament-blog.created_at'))
                             ->content(fn (
-                                ?Post $record
+                                ?Course $record
                             ): string => $record ? $record->created_at->diffForHumans() : '-'),
                         Forms\Components\Placeholder::make('updated_at')
                             ->label(__('filament-blog::filament-blog.last_modified_at'))
                             ->content(fn (
-                                ?Post $record
+                                ?Course $record
                             ): string => $record ? $record->updated_at->diffForHumans() : '-'),
                     ])
                     ->columnSpan(1),
@@ -155,9 +155,9 @@ class PostResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPosts::route('/'),
-            'create' => Pages\CreatePost::route('/create'),
-            'edit' => Pages\EditPost::route('/{record}/edit'),
+            'index' => Pages\ListCourses::route('/'),
+            'create' => Pages\CreateCourse::route('/create'),
+            'edit' => Pages\EditCourse::route('/{record}/edit'),
         ];
     }
 
@@ -184,11 +184,11 @@ class PostResource extends Resource
 
     public static function getPluralModelLabel(): string
     {
-        return __('filament-blog::filament-blog.posts');
+        return __('filament-blog::filament-blog.courses');
     }
 
     public static function getModelLabel(): string
     {
-        return __('filament-blog::filament-blog.post');
+        return __('filament-blog::filament-blog.course');
     }
 }

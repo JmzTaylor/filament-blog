@@ -33,9 +33,9 @@ class Category extends Model
         'is_visible' => 'boolean',
     ];
 
-    public function posts(): HasMany
+    public function courses(): HasMany
     {
-        return $this->hasMany(Post::class, 'blog_category_id', 'id');
+        return $this->hasMany(Course::class, 'blog_category_id', 'id');
     }
 
     public function scopeIsVisible(Builder $query)

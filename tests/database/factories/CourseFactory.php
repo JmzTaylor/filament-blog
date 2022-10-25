@@ -4,14 +4,14 @@ namespace Stephenjude\FilamentBlog\Tests\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Stephenjude\FilamentBlog\Models\Post;
+use Stephenjude\FilamentBlog\Models\Course;
 
-class PostFactory extends Factory
+class CourseFactory extends Factory
 {
     /**
      * @var string
      */
-    protected $model = Post::class;
+    protected $model = Course::class;
 
     public function definition(): array
     {
